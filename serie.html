@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series | The Art of Small Things</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #EFE4D5;
+      --deep-brown: #3d2f20;
+      --text-secondary: #6b5840;
+      --paper-texture: url("images/fondo_textura.png");
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      color: var(--deep-brown);
+      background-color: var(--cream);
+      background-image: var(--paper-texture);
+      background-size: 535px 301px;
+      background-repeat: repeat;
+      overflow-x: hidden;
+    }
+
+    .nav-wrapper {
+      background-color: var(--cream);
+      background-image: var(--paper-texture);
+      background-size: 535px 301px;
+      background-repeat: repeat;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--deep-brown);
+      line-height: 1.4;
+      max-width: 90px;
+      text-decoration: none;
+    }
+
+    .nav-logo:visited,
+    .nav-logo:hover,
+    .nav-logo:focus,
+    .nav-logo:active {
+      color: var(--deep-brown);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Lora', serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--deep-brown);
+      text-decoration: none;
+      opacity: 0.96;
+    }
+
+    .series-hero {
+      padding: 0 0 40px;
+      text-align: center;
+    }
+
+    .series-band {
+      width: 100%;
+      height: clamp(200px, 22vw, 300px);
+      margin: 0 0 54px;
+      overflow: hidden;
+      background-color: var(--cream);
+      background-image: var(--paper-texture);
+      background-size: 535px 301px;
+      background-repeat: repeat;
+    }
+
+    .series-band img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 48%;
+      display: block;
+    }
+
+    .series-kicker {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .series-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(50px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .series-leaf {
+      display: block;
+      width: 78px;
+      height: auto;
+      margin: 0 auto 16px;
+      opacity: 0.86;
+    }
+
+    .series-subtitle {
+      font-size: clamp(15px, 1.7vw, 18px);
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .series-grid-wrap {
+      position: relative;
+      padding: 12px 28px 88px;
+    }
+
+    .series-grid::before,
+    .series-grid::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .series-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-flow: dense;
+      gap: 24px 18px;
+      max-width: 1260px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .series-decoration {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    .series-decoration.flores-secas {
+      right: 0;
+      top: 4%;
+      width: min(360px, 30vw);
+    }
+
+    .series-decoration.ramitas {
+      left: -2vw;
+      bottom: 4%;
+      width: min(340px, 28vw);
+      transform: rotate(-10deg);
+    }
+
+    .series-grid::before {
+      left: -2%;
+      top: 26%;
+      width: min(150px, 13vw);
+      aspect-ratio: 216 / 147;
+      background: url("images/flores.png") center / contain no-repeat;
+      opacity: 0.15;
+    }
+
+    .series-grid::after {
+      right: 2%;
+      bottom: 22%;
+      width: min(110px, 10vw);
+      aspect-ratio: 1;
+      background: url("hojita.png") center / contain no-repeat;
+      transform: rotate(18deg);
+      opacity: 0.13;
+    }
+
+    .series-card {
+      background: var(--cream);
+      padding: 12px 12px 32px;
+      border: 1px solid rgba(105, 82, 55, 0.1);
+      box-shadow: 0 7px 18px rgba(80, 55, 30, 0.07), 0 1px 3px rgba(80, 55, 30, 0.05);
+      transform-origin: center top;
+    }
+
+    .series-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1.12;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: saturate(0.9) brightness(0.98);
+    }
+
+    .series-card figcaption {
+      padding-top: 12px;
+      text-align: center;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.2;
+      color: var(--text-secondary);
+    }
+
+    .series-card.is-square img {
+      aspect-ratio: 1 / 1;
+    }
+
+    .series-card.is-tall img {
+      aspect-ratio: 0.78 / 1;
+    }
+
+    .series-card.is-wide {
+      grid-column: span 2;
+    }
+
+    .series-card.is-wide img {
+      aspect-ratio: 1.72 / 1;
+    }
+
+    .series-quote {
+      min-height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 28px;
+      text-align: center;
+      background: rgba(239, 228, 213, 0.54);
+      border: 1px solid rgba(105, 82, 55, 0.08);
+      box-shadow: 0 6px 16px rgba(80, 55, 30, 0.045);
+      color: var(--deep-brown);
+    }
+
+    .series-quote.is-wide {
+      grid-column: span 2;
+    }
+
+    .series-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 400;
+      line-height: 1.12;
+    }
+
+    .series-quote img {
+      display: block;
+      width: 64px;
+      height: auto;
+      margin: 18px auto 0;
+      opacity: 0.72;
+    }
+
+    .series-card:nth-child(6n+1) { transform: rotate(-1.4deg) translateY(2px); }
+    .series-card:nth-child(6n+2) { transform: rotate(0.9deg) translateY(-2px); }
+    .series-card:nth-child(6n+3) { transform: rotate(-0.7deg) translateY(1px); }
+    .series-card:nth-child(6n+4) { transform: rotate(1.5deg) translateY(0); }
+    .series-card:nth-child(6n+5) { transform: rotate(-1deg) translateY(3px); }
+    .series-card:nth-child(6n+6) { transform: rotate(0.65deg) translateY(-1px); }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 28px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-style: italic;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1000px) {
+      .series-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .series-card.is-wide,
+      .series-quote.is-wide {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .series-hero {
+        padding: 0 0 32px;
+      }
+
+      .series-band {
+        height: 200px;
+        margin-bottom: 38px;
+      }
+
+      .series-grid-wrap {
+        padding: 8px 18px 64px;
+      }
+
+      .series-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 10px;
+      }
+
+      .series-decoration {
+        opacity: 0.22;
+      }
+
+      .series-card {
+        padding: 9px 9px 26px;
+      }
+
+      .series-card.is-wide,
+      .series-quote.is-wide {
+        grid-column: span 2;
+      }
+
+      .series-quote {
+        min-height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrapper">
+    <nav aria-label="Main navigation">
+      <a class="nav-logo" href="index.html">The Art of<br>Small Things</a>
+      <ul class="nav-links">
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main>
+    <section class="series-hero" aria-label="Series introduction">
+      <div class="series-band" aria-hidden="true">
+        <img src="images/cabecera_vela_bordes.png" alt="" />
+      </div>
+      <span class="series-kicker">collection series</span>
+      <h1 class="series-title" id="series-title">Series</h1>
+      <img src="hojita.png" alt="" class="series-leaf" aria-hidden="true" />
+      <p class="series-subtitle" id="series-subtitle">A smaller gathered set of details.</p>
+      <a class="back-link" href="index.html">back to home</a>
+    </section>
+
+    <section class="series-grid-wrap" aria-label="Series gallery">
+      <img src="images/flores_secas_deco.png" alt="" class="series-decoration flores-secas" aria-hidden="true" />
+      <img src="images/ramitas_deco.png" alt="" class="series-decoration ramitas" aria-hidden="true" />
+      <div class="series-grid" id="series-grid"></div>
+    </section>
+  </main>
+
+  <script>
+    const series = {
+      gracias: {
+        title: 'Little Thanks',
+        subtitle: 'Handcrafted thank you favors, tins, tags and small keepsakes.',
+        quote: 'Small thanks, kept close.',
+        items: [
+          { src: 'images/gracias.png', caption: 'thank you favors', shape: 'tall' },
+          { src: 'images/gracias_lata.png', caption: 'favor tin', shape: 'tall' },
+          { src: 'images/gracias_lata_2.png', caption: 'keepsake set', shape: 'tall' },
+          { quote: 'Made slowly, kept forever.', wide: true },
+          { src: 'images/gracias_peq.png', caption: 'small thanks', shape: 'tall' },
+          { src: 'images/bolsa.png', caption: 'gift bag', shape: 'tall' }
+        ]
+      },
+      albahaca: {
+        title: 'Growing Gifts',
+        subtitle: 'Handcrafted basil growing kits with kraft packaging and botanical details.',
+        quote: 'Every piece begins with something growing.',
+        items: [
+          { src: 'images/albahaca.png', caption: 'basil growing kit', shape: 'tall' },
+          { src: 'images/albahaca_conjunto.png', caption: 'growing set', shape: 'wide' },
+          { quote: 'A little care, a little light.', wide: true },
+          { src: 'images/albahaca_detalles.png', caption: 'botanical details', shape: 'tall' }
+        ]
+      },
+      invitaciones: {
+        title: 'Invitations',
+        subtitle: 'Illustrated invitations and botanical paper pieces made to keep.',
+        quote: 'A first page for the memory.',
+        items: [
+          { src: 'images/invitacion_doble.png', caption: 'botanical invitation', shape: 'tall' },
+          { quote: 'Every story deserves a beginning.', wide: true },
+          { src: 'images/invitacion_bill.png', caption: 'illustrated invitation', shape: 'tall' },
+          { src: 'images/invitacion triple.png', caption: 'storybook invitation', shape: 'tall' }
+        ]
+      },
+      chuches: {
+        title: 'Sweet Favors',
+        subtitle: 'Handcrafted sweet details styled with warm handmade textures.',
+        quote: 'Sweet things, softly wrapped.',
+        items: [
+          { src: 'images/chuche.png', caption: 'sweet favor', shape: 'square' },
+          { quote: 'Small things become memories.', wide: true },
+          { src: 'images/chuche_oscura.png', caption: 'warm sweets', shape: 'square' }
+        ]
+      },
+      regalos: {
+        title: 'Wrapped Details',
+        subtitle: 'Handcrafted gift wrapping, ribbons and little decorative gestures.',
+        quote: 'A ribbon can hold a whole moment.',
+        items: [
+          { src: 'images/corona.png', caption: 'wreath wrapping', shape: 'tall' },
+          { src: 'images/bolsa.png', caption: 'gift bag', shape: 'tall' },
+          { quote: 'Chosen carefully, tied slowly.', wide: true },
+          { src: 'images/gracias_lata_2.png', caption: 'striped keepsake', shape: 'tall' }
+        ]
+      },
+      marcos: {
+        title: 'Framed Memories',
+        subtitle: 'Handcrafted keepsake frames and photo details for moments worth holding.',
+        quote: 'Made to hold what matters.',
+        items: [
+          { src: 'images/marco.png', caption: 'framed memory', shape: 'wide' },
+          { quote: 'A memory, made visible.', wide: true },
+          { src: 'images/marcos.png', caption: 'keepsake frames', shape: 'wide' }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get('serie') || 'gracias';
+    const data = series[key] || series.gracias;
+    document.title = `${data.title} | The Art of Small Things`;
+    document.getElementById('series-title').textContent = data.title;
+    document.getElementById('series-subtitle').textContent = data.subtitle;
+    document.getElementById('series-grid').innerHTML = data.items.map((item) => {
+      if (item.quote) {
+        return `
+          <article class="series-quote${item.wide ? ' is-wide' : ''}">
+            <div>
+              <p>${item.quote}</p>
+              <img src="hojita.png" alt="" aria-hidden="true" />
+            </div>
+          </article>
+        `;
+      }
+
+      return `
+        <figure class="series-card is-${item.shape || 'tall'}">
+          <img src="${item.src}" alt="${item.caption}" loading="lazy" />
+          <figcaption>${item.caption}</figcaption>
+        </figure>
+      `;
+    }).join('');
+  </script>
+</body>
+</html>

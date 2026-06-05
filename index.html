@@ -15,7 +15,7 @@
     }
 
     :root {
-      --cream: #f5f0e8;
+      --cream: #EFE4D5;
       --linen: #ede8dd;
       --oatmeal: #e8e0d0;
       --paper: #f0ead8;
@@ -29,6 +29,7 @@
       --text-secondary: #6b5840;
       --text-light: #9b8570;
       --border-soft: rgba(140, 115, 85, 0.18);
+      --paper-texture: url("images/fondo_textura.png");
     }
 
     html {
@@ -45,13 +46,15 @@
     }
 
     /* ─── NAVIGATION ─── */
+    .nav-wrapper {
+      background-color: var(--cream);
+    }
+
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 48px;
-      background-color: var(--cream);
-      border-bottom: 1px solid var(--border-soft);
+      padding: 18px 48px;
     }
 
     .nav-logo {
@@ -62,6 +65,15 @@
       color: var(--deep-brown);
       line-height: 1.4;
       max-width: 90px;
+      text-decoration: none;
+    }
+
+    .nav-logo:visited,
+    .nav-logo:hover,
+    .nav-logo:focus,
+    .nav-logo:active {
+      color: var(--deep-brown);
+      text-decoration: none;
     }
 
     .nav-links {
@@ -72,12 +84,12 @@
 
     .nav-links a {
       font-family: 'Lora', serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.05em;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       color: var(--deep-brown);
       text-decoration: none;
-      opacity: 0.85;
+      opacity: 0.96;
       transition: opacity 0.2s;
     }
 
@@ -93,6 +105,10 @@
       min-height: 520px;
       max-height: 820px;
       overflow: hidden;
+      background-color: var(--cream);
+      background-image: var(--paper-texture);
+      background-size: 535px 301px;
+      background-repeat: repeat;
     }
 
     .hero-img {
@@ -103,28 +119,33 @@
       display: block;
     }
 
-    /* Torn-paper bottom edge */
-    .hero::after {
+    .hero::before {
       content: '';
       position: absolute;
-      bottom: -2px;
       left: 0;
       right: 0;
-      height: 60px;
-      background: var(--cream);
-      clip-path: polygon(
-        0% 100%, 0% 60%, 1% 40%, 2% 55%, 3.5% 35%, 5% 50%, 6% 30%,
-        7.5% 48%, 9% 28%, 11% 52%, 13% 32%, 14.5% 50%, 16% 25%,
-        17.5% 45%, 19% 30%, 20.5% 55%, 22% 35%, 24% 50%, 26% 28%,
-        28% 48%, 30% 30%, 32% 52%, 34% 32%, 36% 50%, 38% 28%,
-        40% 45%, 42% 30%, 44% 55%, 46% 35%, 48% 50%, 50% 28%,
-        52% 48%, 54% 30%, 56% 52%, 58% 32%, 60% 50%, 62% 28%,
-        64% 45%, 66% 30%, 68% 55%, 70% 35%, 72% 50%, 74% 28%,
-        76% 48%, 78% 30%, 80% 52%, 82% 32%, 84% 50%, 86% 28%,
-        88% 45%, 90% 30%, 92% 55%, 94% 35%, 96% 50%, 97.5% 32%,
-        99% 48%, 100% 35%, 100% 100%
-      );
-      z-index: 2;
+      height: clamp(34px, 5.2vw, 72px);
+      background-image: var(--paper-texture);
+      background-size: 535px 301px;
+      background-repeat: repeat;
+      opacity: 0.32;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero::before {
+      top: 0;
+      mask-image: linear-gradient(to bottom, #000 0 58%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0 58%, transparent 100%);
+    }
+
+    @media (min-width: 901px) {
+      .hero {
+        aspect-ratio: 1664 / 945;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+      }
     }
 
     .hero-overlay {
@@ -132,17 +153,17 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(240, 230, 210, 0.05) 0%,
-        rgba(240, 230, 210, 0.25) 50%,
-        rgba(240, 230, 210, 0.55) 100%
+        rgba(240, 230, 210, 0.03) 0%,
+        rgba(240, 230, 210, 0.16) 50%,
+        rgba(240, 230, 210, 0.42) 100%
       );
       z-index: 1;
     }
 
     .hero-content {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 42%;
+      left: 42%;
       transform: translate(-50%, -50%);
       text-align: center;
       z-index: 2;
@@ -160,23 +181,23 @@
       margin-bottom: 16px;
     }
 
-    .hero-ornament {
-      display: block;
-      margin: 0 auto 14px;
-      color: var(--warm-brown);
-      font-size: 20px;
-      opacity: 0.6;
-      letter-spacing: 6px;
-    }
-
     .hero-subtitle {
       font-family: 'Lora', serif;
       font-size: clamp(14px, 1.8vw, 17px);
-      font-weight: 400;
-      color: var(--text-secondary);
+      font-weight: 500;
+      color: var(--deep-brown);
       font-style: italic;
       letter-spacing: 0.02em;
       line-height: 1.6;
+      text-shadow: 0 1px 8px rgba(239, 228, 213, 0.78);
+    }
+
+    .hero-leaf {
+      display: block;
+      width: 82px;
+      height: auto;
+      margin: 0 auto 12px;
+      opacity: 0.86;
     }
 
     /* ─── QUOTE SECTION ─── */
@@ -198,24 +219,23 @@
       display: none;
     }
 
-    .quote-floral {
-      display: block;
-      font-size: 22px;
-      color: var(--sage);
-      margin-bottom: 28px;
-      letter-spacing: 8px;
-      opacity: 0.7;
-    }
-
     .quote-section blockquote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 4vw, 40px);
-      font-weight: 400;
-      line-height: 1.35;
+      font-size: clamp(30px, 4.3vw, 44px);
+      font-weight: 500;
+      line-height: 1.18;
       color: var(--deep-brown);
       max-width: 680px;
       margin: 0 auto;
-      letter-spacing: 0.01em;
+      letter-spacing: 0;
+    }
+
+    .quote-leaf {
+      display: block;
+      width: 74px;
+      height: auto;
+      margin: 14px auto 0;
+      opacity: 0.85;
     }
 
     /* Floral decoration top-right */
@@ -236,28 +256,27 @@
       background: var(--cream);
       padding: 0 0 80px;
       position: relative;
+      overflow: hidden;
     }
 
     .editorial-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(260px, 1.15fr) minmax(170px, 0.68fr) minmax(270px, 0.92fr) minmax(210px, 0.68fr);
       gap: 0;
-      max-width: 1100px;
+      max-width: none;
       margin: 0 auto;
       align-items: center;
-      padding: 0 32px;
+      padding: 0 2vw;
+      position: relative;
     }
 
     .editorial-images {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 0;
-      position: relative;
+      display: contents;
     }
 
     .editorial-img-basket {
       width: 100%;
-      aspect-ratio: 3/4;
+      height: 380px;
       object-fit: cover;
       object-position: center;
       display: block;
@@ -267,27 +286,32 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 18px 0;
+      position: relative;
+      z-index: 2;
+      margin-left: -48px;
+      margin-right: -38px;
+      transform: translateX(10px);
     }
 
     .editorial-polaroid {
-      background: #f7f3eb;
-      padding: 12px 12px 30px;
+      background: #EFE4D5;
+      padding: 13px 13px 32px;
       box-shadow: 0 4px 24px rgba(80, 55, 30, 0.15), 0 1px 4px rgba(80, 55, 30, 0.1);
-      transform: rotate(-1.5deg);
+      transform: rotate(1.5deg);
       position: relative;
-      max-width: 220px;
+      max-width: 390px;
       width: 100%;
     }
 
     .editorial-polaroid::before {
       content: '';
       position: absolute;
-      top: -8px;
+      top: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 30px;
-      height: 16px;
+      width: 46px;
+      height: 22px;
       background: rgba(200, 185, 160, 0.5);
       border-radius: 2px;
     }
@@ -300,31 +324,54 @@
     }
 
     .editorial-text {
-      padding: 48px 48px 48px 56px;
-      background: #f0e9d8;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      padding: 12px 24px;
+      background: transparent;
       position: relative;
       min-height: 360px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
+      z-index: 3;
+      margin-left: -58px;
+      margin-right: -58px;
     }
 
-    /* Torn left edge */
-    .editorial-text::before {
-      content: '';
+    .editorial-note-img {
+      display: block;
+      width: min(100%, 395px);
+      height: auto;
+      filter: drop-shadow(0 10px 22px rgba(80, 55, 30, 0.12));
+    }
+
+    .editorial-side-photo {
+      position: relative;
+      z-index: 1;
+      min-height: 340px;
+      overflow: visible;
+      padding-top: clamp(72px, 6.8vw, 96px);
+    }
+
+    .editorial-side-photo .editorial-flowers {
       position: absolute;
-      top: 0; bottom: 0; left: -18px;
-      width: 20px;
-      background: #f0e9d8;
-      clip-path: polygon(
-        100% 0%, 60% 3%, 80% 7%, 55% 11%, 75% 15%, 52% 19%,
-        70% 23%, 48% 28%, 68% 32%, 46% 36%, 65% 41%, 44% 45%,
-        63% 50%, 42% 54%, 62% 58%, 43% 63%, 64% 67%, 45% 71%,
-        65% 75%, 47% 79%, 66% 83%, 48% 87%, 67% 91%, 50% 95%,
-        70% 98%, 100% 100%
-      );
+      top: clamp(-34px, -2.2vw, -22px);
+      left: 50%;
+      width: clamp(150px, 21vw, 300px);
+      height: auto;
+      z-index: 1;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .editorial-side-photo .editorial-side-img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: saturate(0.92) brightness(0.98);
     }
 
     .editorial-heading {
@@ -364,7 +411,7 @@
     /* ─── MEMORY STRIP ─── */
     .memory-strip {
       background: var(--cream);
-      padding: 12px 0 0;
+      padding: 30px 8px 40px;
       overflow: hidden;
     }
 
@@ -372,77 +419,92 @@
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 0;
+      align-items: start;
     }
 
     .memory-card {
       position: relative;
-      overflow: hidden;
-      aspect-ratio: 3/4;
+      display: block;
+      overflow: visible;
+      aspect-ratio: auto;
+      background: #EFE4D5;
+      padding: 11px 11px 30px;
+      border: 1px solid rgba(105, 82, 55, 0.1);
+      box-shadow: 0 4px 10px rgba(80, 55, 30, 0.06), 0 1px 2px rgba(80, 55, 30, 0.05);
+      transform-origin: center top;
+      margin: 0 -7px;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      color: inherit;
+      text-decoration: none;
     }
 
     .memory-card img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
       filter: saturate(0.88) brightness(0.97);
       transition: filter 0.4s ease;
     }
 
+    .memory-card:nth-child(1) {
+      --memory-transform: rotate(-1.8deg) translateY(2px) scale(1.045);
+      transform: var(--memory-transform);
+    }
+
+    .memory-card:nth-child(2) {
+      --memory-transform: rotate(1.25deg) translateY(-2px) scale(1.045);
+      transform: var(--memory-transform);
+    }
+
+    .memory-card:nth-child(3) {
+      --memory-transform: rotate(-1deg) translateY(3px) scale(1.045);
+      transform: var(--memory-transform);
+    }
+
+    .memory-card:nth-child(4) {
+      --memory-transform: rotate(1.6deg) translateY(0) scale(1.045);
+      transform: var(--memory-transform);
+    }
+
+    .memory-card:nth-child(5) {
+      --memory-transform: rotate(-1.45deg) translateY(3px) scale(1.045);
+      transform: var(--memory-transform);
+    }
+
+    .memory-card:nth-child(6) {
+      --memory-transform: rotate(1deg) translateY(-2px) scale(1.045);
+      transform: var(--memory-transform);
+    }
+
     .memory-card:hover img {
       filter: saturate(1) brightness(1);
     }
 
+    .memory-card:hover {
+      transform: var(--memory-transform) scale(1.045);
+      box-shadow: 0 8px 20px rgba(80, 55, 30, 0.1), 0 2px 5px rgba(80, 55, 30, 0.06);
+      z-index: 5;
+    }
+
     .memory-card-caption {
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      right: 0;
+      display: block;
       text-align: center;
       font-family: 'Lora', serif;
       font-style: italic;
       font-size: 12px;
-      color: rgba(255,255,255,0.88);
-      letter-spacing: 0.03em;
-      text-shadow: 0 1px 6px rgba(50,30,10,0.45);
-      padding: 0 8px;
-    }
-
-    /* subtle overlapping border effect */
-    .memory-card::after {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(255,255,255,0.1);
-      pointer-events: none;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+      text-shadow: none;
+      padding: 11px 4px 0;
+      line-height: 1.1;
     }
 
     /* ─── VALUES SECTION ─── */
     .values {
       background: var(--cream);
-      padding: 80px 48px 80px;
+      padding: 112px 48px;
       text-align: center;
-      position: relative;
-    }
-
-    /* torn top edge */
-    .values::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: 0; right: 0;
-      height: 36px;
-      background: var(--cream);
-      clip-path: polygon(
-        0% 100%, 0% 70%, 1.5% 50%, 3% 65%, 5% 42%, 7% 60%,
-        9% 38%, 11% 58%, 13% 38%, 15% 56%, 17% 36%, 19% 55%,
-        21% 35%, 23% 58%, 25% 38%, 27% 56%, 29% 36%, 31% 55%,
-        33% 35%, 35% 58%, 37% 38%, 39% 56%, 41% 36%, 43% 55%,
-        45% 35%, 47% 58%, 49% 38%, 51% 56%, 53% 36%, 55% 55%,
-        57% 35%, 59% 58%, 61% 38%, 63% 56%, 65% 36%, 67% 55%,
-        69% 35%, 71% 58%, 73% 38%, 75% 56%, 77% 36%, 79% 55%,
-        81% 35%, 83% 58%, 85% 38%, 87% 56%, 89% 36%, 91% 55%,
-        93% 35%, 95% 58%, 97% 45%, 100% 60%, 100% 100%
-      );
     }
 
     .values-grid {
@@ -461,92 +523,67 @@
     }
 
     .value-icon {
-      font-size: 24px;
+      font-size: 27px;
       color: var(--sage);
-      opacity: 0.75;
+      opacity: 0.92;
       letter-spacing: 4px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .value-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
-      font-weight: 500;
+      font-size: 22px;
+      font-weight: 600;
       color: var(--deep-brown);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
     .value-desc {
-      font-size: 13px;
-      color: var(--text-light);
-      line-height: 1.65;
-      max-width: 180px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 205px;
       margin: 0 auto;
     }
 
     /* ─── CLOSING ─── */
     .closing {
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      min-height: 420px;
-      background: var(--linen);
-    }
-
-    .closing-text-side {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 72px 64px 72px 72px;
-      background: var(--linen);
-    }
-
-    .closing-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 400;
-      line-height: 1.3;
-      color: var(--deep-brown);
-      letter-spacing: 0.01em;
-      margin-bottom: 20px;
-    }
-
-    .closing-heart {
-      font-size: 22px;
-      color: var(--warm-brown);
-      opacity: 0.55;
-      display: block;
-    }
-
-    .closing-img-side {
-      position: relative;
+      background: var(--cream);
       overflow: hidden;
     }
 
-    .closing-img-side img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      filter: saturate(0.85);
-    }
-
-    /* Torn left edge on image */
-    .closing-img-side::before {
+    .closing::before {
       content: '';
       position: absolute;
-      top: 0; bottom: 0; left: -1px;
-      width: 28px;
-      background: var(--linen);
-      z-index: 2;
-      clip-path: polygon(
-        0% 0%, 40% 2%, 20% 6%, 42% 10%, 22% 14%, 44% 18%,
-        24% 22%, 46% 26%, 26% 31%, 48% 35%, 28% 39%, 50% 43%,
-        30% 48%, 52% 52%, 32% 56%, 54% 60%, 34% 64%, 56% 68%,
-        36% 72%, 58% 76%, 38% 80%, 60% 84%, 40% 88%, 62% 92%,
-        42% 96%, 64% 99%, 0% 100%
-      );
+      left: 11%;
+      top: 12%;
+      width: clamp(48px, 5vw, 82px);
+      aspect-ratio: 1;
+      background: url("hojita.png") center / contain no-repeat;
+      opacity: 0.78;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .closing-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    body,
+    .nav-wrapper,
+    .quote-section,
+    .editorial,
+    .memory-strip,
+    .values,
+    .closing {
+      background-color: var(--cream);
+      background-image: var(--paper-texture);
+      background-size: 535px 301px;
+      background-repeat: repeat;
     }
 
     /* ─── PLACEHOLDER IMAGES (gradient-based for easy replacement) ─── */
@@ -575,17 +612,25 @@
       }
 
       .editorial-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         max-height: 320px;
         overflow: hidden;
       }
 
       .editorial-img-basket {
+        height: auto;
         aspect-ratio: 4/3;
       }
 
       .editorial-text {
-        padding: 40px 36px;
+        padding: 28px 24px 0;
         min-height: auto;
+        margin: 0;
+      }
+
+      .editorial-side-photo {
+        display: none;
       }
 
       .editorial-text::before {
@@ -608,26 +653,6 @@
         padding: 64px 24px;
       }
 
-      .closing {
-        grid-template-columns: 1fr;
-      }
-
-      .closing-img-side {
-        min-height: 280px;
-      }
-
-      .closing-img-side::before {
-        display: none;
-      }
-
-      .closing-text-side {
-        padding: 56px 36px;
-        order: 2;
-      }
-
-      .closing-img-side {
-        order: 1;
-      }
     }
 
     @media (max-width: 600px) {
@@ -661,68 +686,62 @@
         display: none;
       }
 
-      .closing-text-side {
-        padding: 48px 28px;
-      }
-
-      .closing-quote {
-        font-size: 28px;
-      }
     }
   </style>
 </head>
 <body>
 
   <!-- ── NAVIGATION ── -->
+  <div class="nav-wrapper">
   <nav aria-label="Main navigation">
-    <div class="nav-logo">The Art of<br>Small Things</div>
+    <a class="nav-logo" href="index.html">The Art of<br>Small Things</a>
     <ul class="nav-links">
-      <li><a href="#">Collection</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Journal</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="about.html">About</a></li>
     </ul>
   </nav>
+  </div>
 
   <!-- ── HERO ── -->
   <section class="hero" aria-label="Hero">
     <img
-      src="images/cabecera_bordes.png"
+      src="images/cabecera_bordes4_limpia.png"
       alt="A wooden table by a window with flowers, tea cups, ribbon, and a gift box framed by torn paper borders"
-      class="hero-img img-placeholder"
+      class="hero-img"
       loading="eager"
     />
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
       <h1 class="hero-title">The Art of<br>Small Things</h1>
-      <span class="hero-ornament" aria-hidden="true">· ✦ ·</span>
+      <img src="hojita.png" alt="" class="hero-leaf" loading="eager" aria-hidden="true" />
       <p class="hero-subtitle">A collection of thoughtful details,<br>created with care.</p>
     </div>
   </section>
 
   <!-- ── QUOTE ── -->
   <section class="quote-section" aria-label="Quote">
-    <span class="quote-floral" aria-hidden="true">✦</span>
     <blockquote>
       Sometimes the smallest gesture<br>becomes the longest memory.
     </blockquote>
+    <img src="hojita.png" alt="" class="quote-leaf" loading="lazy" aria-hidden="true" />
     <span class="floral-accent" aria-hidden="true">❧</span>
   </section>
 
   <!-- ── EDITORIAL ── -->
-  <section class="editorial" aria-label="About our philosophy">
+  <section class="editorial" id="about" aria-label="About our philosophy">
     <div class="editorial-inner">
 
       <div class="editorial-images">
         <img
-          src="images/bolsa.png"
-          alt="A white gift bag tied with ribbon and a small tag among dried flowers"
+          src="images/albahaca_detalles.png"
+          alt="Basil growing kits with botanical cards, tags, eucalyptus, and dried flowers"
           class="editorial-img-basket img-placeholder"
           loading="lazy"
         />
         <div class="editorial-polaroid-wrap">
           <figure class="editorial-polaroid">
             <img
-              src="images/corona.png"
+              src="images/gracias_peq.png"
               alt="Two coral wrapped gifts with decorative wooden wreaths and twine"
               class="img-placeholder-warm"
               loading="lazy"
@@ -732,14 +751,28 @@
       </div>
 
       <div class="editorial-text">
-        <h2 class="editorial-heading">
-          Thoughtful details<br><em>from the heart</em>
-        </h2>
-        <span class="editorial-ornament" aria-hidden="true">✦</span>
-        <div class="editorial-body">
-          <p>Each piece is chosen, created or gathered with one simple intention: to make someone feel remembered.</p>
-          <p>For the little moments.<br>For the people who matter.<br>For the memories we keep.</p>
-        </div>
+        <img
+          src="images/hoja.png"
+          alt="Thoughtful details from the heart, printed on textured handmade paper"
+          class="editorial-note-img"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="editorial-side-photo">
+        <img
+          src="images/flores.png"
+          alt=""
+          class="editorial-flowers"
+          loading="lazy"
+          aria-hidden="true"
+        />
+        <img
+          src="images/marcos.png"
+          alt="A row of basil growing kits arranged on a wooden table"
+          class="editorial-side-img"
+          loading="lazy"
+        />
       </div>
 
     </div>
@@ -749,35 +782,35 @@
   <section class="memory-strip" aria-label="Collection gallery">
     <div class="memory-strip-inner">
 
-      <div class="memory-card">
-        <img src="images/gracias.png" alt="Personalized thank you favor bags and tags arranged with dried flowers" class="img-placeholder" loading="lazy" />
-        <span class="memory-card-caption">gathered with care</span>
-      </div>
-
-      <div class="memory-card">
-        <img src="images/gracias_lata.png" alt="A thank you favor bag, tin, and small wrapped box with botanical details" class="img-placeholder-green" loading="lazy" />
+      <a class="memory-card" href="serie.html?serie=gracias">
+        <img src="images/gracias_lata_2.png" alt="Personalized thank you favor bags and tags arranged with dried flowers" class="img-placeholder" loading="lazy" />
         <span class="memory-card-caption">little things</span>
-      </div>
+      </a>
 
-      <div class="memory-card">
-        <img src="images/gracias_lata_2.png" alt="A thank you tin, tag, favor bag, and striped wrapped gift" class="img-placeholder-warm" loading="lazy" />
-        <span class="memory-card-caption">made slowly</span>
-      </div>
+      <a class="memory-card" href="serie.html?serie=albahaca">
+        <img src="images/albahaca.png" alt="A thank you favor bag, tin, and small wrapped box with botanical details" class="img-placeholder-green" loading="lazy" />
+        <span class="memory-card-caption">gathered with care</span>
+      </a>
 
-      <div class="memory-card">
-        <img src="images/invitacion_doble.png" alt="A botanical invitation card styled with flowers and eucalyptus" class="img-placeholder" loading="lazy" />
+      <a class="memory-card" href="serie.html?serie=invitaciones">
+        <img src="images/invitacion_doble.png" alt="A thank you tin, tag, favor bag, and striped wrapped gift" class="img-placeholder-warm" loading="lazy" />
         <span class="memory-card-caption">meant to be kept</span>
-      </div>
+      </a>
 
-      <div class="memory-card">
-        <img src="images/marco.png" alt="A framed group photo with floral details and a thank you tag" class="img-placeholder-green" loading="lazy" />
-        <span class="memory-card-caption">for you</span>
-      </div>
+      <a class="memory-card" href="serie.html?serie=chuches">
+        <img src="images/chuche_oscura.png" alt="A botanical invitation card styled with flowers and eucalyptus" class="img-placeholder" loading="lazy" />
+        <span class="memory-card-caption">made slowly</span>
+      </a>
 
-      <div class="memory-card">
-        <img src="images/marcos.png" alt="Framed keepsake photos and botanical cards on a warm table" class="img-placeholder-warm" loading="lazy" />
+      <a class="memory-card" href="serie.html?serie=regalos">
+        <img src="images/corona.png" alt="A framed group photo with floral details and a thank you tag" class="img-placeholder-green" loading="lazy" />
         <span class="memory-card-caption">with love</span>
-      </div>
+      </a>
+
+      <a class="memory-card" href="serie.html?serie=marcos">
+        <img src="images/marco.png" alt="Framed keepsake photos and botanical cards on a warm table" class="img-placeholder-warm" loading="lazy" />
+        <span class="memory-card-caption">for you</span>
+      </a>
 
     </div>
   </section>
@@ -809,23 +842,12 @@
 
   <!-- ── CLOSING ── -->
   <section class="closing" aria-label="Closing thought">
-
-    <div class="closing-text-side">
-      <blockquote class="closing-quote">
-        Behind every small thing is a person who cared enough to make it.
-      </blockquote>
-      <span class="closing-heart" aria-hidden="true">♡</span>
-    </div>
-
-    <div class="closing-img-side">
-      <img
-        src="images/cabecera_regalo.png"
-        alt="A warm gift table with flowers, tea, wrapping paper, ribbon, and candlelight"
-        class="img-placeholder"
-        loading="lazy"
-      />
-    </div>
-
+    <img
+      src="images/pie.png"
+      alt="Behind every small thing is a person who cared enough to make it, with a warm floral table scene"
+      class="closing-img"
+      loading="lazy"
+    />
   </section>
 
 </body>

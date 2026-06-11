@@ -72,6 +72,7 @@
     }
 
     .nav-links a {
+      position: relative;
       font-family: 'Lora', serif;
       font-size: 15px;
       font-weight: 500;
@@ -79,6 +80,33 @@
       color: var(--deep-brown);
       text-decoration: none;
       opacity: 0.96;
+      padding-bottom: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--sage);
+      opacity: 0;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
+      opacity: 0.78;
+      transform: translateX(-50%) scaleX(1);
     }
 
     .collection-hero {
@@ -524,6 +552,18 @@
         <figure class="product-card is-tall">
           <img src="images/invitacion triple.png" alt="Invitation card with illustrated outdoor scene" loading="lazy" />
           <figcaption>storybook invitation</figcaption>
+        </figure>
+        <figure class="product-card is-wide">
+          <img src="images/invitacion_geles_ruth_pack.jpg" alt="Two printed teacher invitation cards prepared with blue and yellow folders" loading="lazy" />
+          <figcaption>teacher invitations</figcaption>
+        </figure>
+        <figure class="product-card is-tall">
+          <img src="images/invitacion_ruth_aventuras.jpg" alt="Illustrated thank you invitation with children looking out over the sea" loading="lazy" />
+          <figcaption>adventure invitation</figcaption>
+        </figure>
+        <figure class="product-card is-tall">
+          <img src="images/invitacion_geles_imaginacion.jpg" alt="Illustrated invitation with children entering imaginative worlds through open doors" loading="lazy" />
+          <figcaption>imagination invitation</figcaption>
         </figure>
         <article class="quote-card is-wide">
           <div>

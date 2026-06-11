@@ -72,6 +72,7 @@
     }
 
     .nav-links a {
+      position: relative;
       font-family: 'Lora', serif;
       font-size: 15px;
       font-weight: 500;
@@ -79,6 +80,33 @@
       color: var(--deep-brown);
       text-decoration: none;
       opacity: 0.96;
+      padding-bottom: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--sage);
+      opacity: 0;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
+      opacity: 0.78;
+      transform: translateX(-50%) scaleX(1);
     }
 
     .about-hero {

@@ -71,6 +71,7 @@
     }
 
     .nav-links a {
+      position: relative;
       font-family: 'Lora', serif;
       font-size: 15px;
       font-weight: 500;
@@ -78,6 +79,33 @@
       color: var(--deep-brown);
       text-decoration: none;
       opacity: 0.96;
+      padding-bottom: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--sage, #8a9e84);
+      opacity: 0;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
+      opacity: 0.78;
+      transform: translateX(-50%) scaleX(1);
     }
 
     .series-hero {
@@ -450,7 +478,7 @@
     <nav aria-label="Main navigation">
       <a class="nav-logo" href="index.html">The Art of<br>Small Things</a>
       <ul class="nav-links">
-        <li><a href="collection.html">Collection</a></li>
+        <li><a href="collection.html" aria-current="page">Collection</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -517,7 +545,10 @@
           { src: 'images/invitacion_doble.png', caption: 'botanical invitation', shape: 'tall' },
           { quote: 'Every story deserves a beginning.', wide: true },
           { src: 'images/invitacion_bill.png', caption: 'illustrated invitation', shape: 'tall' },
-          { src: 'images/invitacion triple.png', caption: 'storybook invitation', shape: 'tall' }
+          { src: 'images/invitacion triple.png', caption: 'storybook invitation', shape: 'tall' },
+          { src: 'images/invitacion_geles_ruth_pack.jpg', caption: 'teacher invitations', shape: 'wide' },
+          { src: 'images/invitacion_ruth_aventuras.jpg', caption: 'adventure invitation', shape: 'tall' },
+          { src: 'images/invitacion_geles_imaginacion.jpg', caption: 'imagination invitation', shape: 'tall' }
         ]
       },
       chuches: {
